@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { categories, link } from '../data/products';
+---
+<Base title="Recuerdos con Estilo: las mejores opciones para tus fotos" description="Marcos digitales, impresoras fotográficas, regalos de boda, álbumes y fotolibros: 25 productos seleccionados para mostrar, imprimir y regalar tus recuerdos.">
+  <section class="hero"><div class="wrap">
+    <div>
+      <h1>Tus mejores fotos, listas para mirar y regalar</h1>
+      <p>Hemos comparado marcos, impresoras, álbumes y regalos para que elijas bien a la primera. En cada categoría, una elección clara y cuatro alternativas.</p>
+    </div>
+    <div class="picks">
+      <h2>Nuestras elecciones</h2>
+      {categories.map(c => (
+        <a class="pick" href={link(c.products[0].q)} target="_blank" rel="sponsored nofollow noopener">
+          <span class="ic" aria-hidden="true">{c.icon}</span>
+          <span><b>{c.products[0].name}</b><small>{c.short}</small></span>
+          <span class="go">Ver en Amazon</span>
+        </a>
+      ))}
+    </div>
+  </div></section>
+  <div class="trust"><div class="wrap">
+    <div><b>Una elección clara</b>Te decimos cuál comprar y para quién es.</div>
+    <div><b>Compras en Amazon.es</b>Con sus condiciones de envío y devolución.</div>
+    <div><b>Sin coste extra</b>El precio para ti es el mismo.</div>
+  </div></div>
+  <section class="blk"><div class="wrap">
+    <h2>Elige tu categoría</h2>
+    <p class="sub">Cada guía incluye cinco productos, con la mejor elección primero.</p>
+    <div class="tiles">
+      {categories.map(c => <a class="tile" href={`/${c.slug}/`}><span class="ic" aria-hidden="true">{c.icon}</span><b>{c.short}</b><small>{c.intro}</small></a>)}
+    </div>
+  </div></section>
+</Base>

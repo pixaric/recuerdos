@@ -1,0 +1,26 @@
+---
+import { link } from '../data/products';
+const { p, pos, featured = false, icon = '' } = Astro.props;
+const href = link(p.q);
+---
+{featured ? (
+  <article class="feat">
+    <div class="vis" aria-hidden="true">{icon}</div>
+    <div class="body">
+      <span class="badge">Nuestra elección</span>
+      <h2>{p.name}</h2>
+      <p class="ideal">{p.ideal}</p>
+      <ul>{p.pros.map(x => <li>{x}</li>)}</ul>
+      <a class="btn" href={href} target="_blank" rel="sponsored nofollow noopener">Ver precio en Amazon</a>
+      <small>El precio actual lo ves en Amazon.es</small>
+    </div>
+  </article>
+) : (
+  <article class="card">
+    <span class="pos">Opción {pos}</span>
+    <h3>{p.name}</h3>
+    <p class="ideal">{p.ideal}</p>
+    <ul>{p.pros.map(x => <li>{x}</li>)}</ul>
+    <a class="btn" href={href} target="_blank" rel="sponsored nofollow noopener">Ver precio en Amazon</a>
+  </article>
+)}

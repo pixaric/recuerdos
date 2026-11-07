@@ -1,0 +1,27 @@
+---
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import { categories } from '../data/products';
+const { title, description, sticky = false } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+</head>
+<body class={sticky ? 'has-sticky' : ''}>
+  <header class="top"><div class="wrap">
+    <a class="brand" href="/">Recuerdos con Estilo</a>
+    {categories.map(c => <a class="nl" href={`/${c.slug}/`}>{c.short}</a>)}
+  </div></header>
+  <slot />
+  <footer><div class="wrap">
+    <p><strong>Aviso de afiliación:</strong> como afiliado de Amazon, obtengo ingresos por las compras adscritas. El precio que pagas no cambia. Los precios y la disponibilidad los fija Amazon y pueden variar.</p>
+    <p>© {new Date().getFullYear()} Recuerdos con Estilo. Amazon y su logotipo son marcas de Amazon.com, Inc. o sus filiales.</p>
+  </div></footer>
+</body>
+</html>
