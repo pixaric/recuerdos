@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recuerdos con Estilo: las mejores opciones para tus fotos</title>
+<meta name="description" content="Marcos digitales, impresoras fotográficas, regalos de boda, álbumes y fotolibros: 25 productos seleccionados para mostrar, imprimir y regalar tus recuerdos.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: { colors: { ink:'#0e1b2c', mut:'#4d5b70', cta:'#ff8a1f', ctah:'#ff9d44', ok:'#0f9d58', tint:'#e8efff' } } } }
+</script>
+<style>body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}</style>
+</head>
+<body class="bg-slate-50 text-ink antialiased">
+
+<header class="sticky top-0 z-20 bg-ink text-white">
+  <nav class="max-w-6xl mx-auto px-5 h-14 flex items-center gap-5 overflow-x-auto whitespace-nowrap" id="nav">
+    <a href="#top" class="font-extrabold text-lg mr-auto">Recuerdos con Estilo</a>
+  </nav>
+</header>
+
+<section id="top" class="bg-ink text-white">
+  <div class="max-w-6xl mx-auto px-5 py-14 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Tus mejores fotos, listas para mirar y regalar</h1>
+      <p class="mt-4 text-slate-300 text-lg max-w-md">Hemos comparado marcos, impresoras, álbumes y regalos para que elijas bien a la primera. En cada categoría, una elección clara y cuatro alternativas.</p>
+    </div>
+    <div class="bg-white text-ink rounded-2xl p-2" id="picks">
+      <h2 class="px-4 pt-3 pb-2 text-sm font-bold text-mut">Nuestras elecciones</h2>
+    </div>
+  </div>
+</section>
+
+<div class="bg-white border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-5 py-4 grid md:grid-cols-3 gap-3 text-sm text-mut">
+    <div><b class="block text-ink">Una elección clara</b>Te decimos cuál comprar y para quién es.</div>
+    <div><b class="block text-ink">Compras en Amazon.es</b>Con sus condiciones de envío y devolución.</div>
+    <div><b class="block text-ink">Sin coste extra</b>El precio para ti es el mismo.</div>
+  </div>
+</div>
+
+<main class="max-w-6xl mx-auto px-5" id="root"></main>
+
+<footer class="bg-ink text-slate-400 mt-16 py-9 text-sm">
+  <div class="max-w-6xl mx-auto px-5 space-y-3">
+    <p><strong class="text-white">Aviso de afiliación:</strong> como afiliado de Amazon, obtengo ingresos por las compras adscritas. El precio que pagas no cambia. Los precios y la disponibilidad los fija Amazon y pueden variar.</p>
+    <p>© <span id="y"></span> Recuerdos con Estilo. Amazon y su logotipo son marcas de Amazon.com, Inc. o sus filiales.</p>
+  </div>
+</footer>
+
+<script src="productos.js"></script>
+<script>
+const href = p => p.url || `https://www.amazon.es/s?k=${encodeURIComponent(p.q)}&tag=${TAG}`;
+const REL = 'target="_blank" rel="sponsored nofollow noopener"';
+const BTN = 'block text-center bg-cta hover:bg-ctah text-[#1a1100] font-extrabold py-3 px-4 rounded-xl shadow-[0_2px_0_#d46f0b] transition';
+const li = v => v.map(x => `<li class="relative pl-6 my-1"><span class="absolute left-0 text-ok font-extrabold">✓</span>${x}</li>`).join("");
+
+// Menú
+document.getElementById("nav").insertAdjacentHTML("beforeend",
+  cats.map(c => `<a href="#${c.id}" class="text-sm font-semibold text-slate-300 hover:text-white">${c.s}</a>`).join(""));
+
+// Elecciones en la portada
+document.getElementById("picks").insertAdjacentHTML("beforeend",
+  cats.map(c => `<a href="${href(c.p[0])}" ${REL} class="grid grid-cols-[auto_1fr_auto] gap-3 items-center px-4 py-3 rounded-xl hover:bg-tint">
+    <span class="text-2xl" aria-hidden="true">${c.i}</span>
+    <span><b class="block text-[15px]">${c.p[0].n}</b><small class="text-mut">${c.s}</small></span>
+    <span class="text-xs font-bold text-blue-600">Ver en Amazon</span></a>`).join(""));
+
+// Categorías
+document.getElementById("root").innerHTML = cats.map(c => {
+  const top = c.p[0];
+  return `<section id="${c.id}" class="pt-14 scroll-mt-16">
+    <h2 class="text-3xl font-extrabold">${c.t}</h2>
+    <p class="text-mut mt-2 mb-6 max-w-xl">${c.intro}</p>
+    <article class="grid md:grid-cols-2 bg-white border-2 border-ok rounded-2xl overflow-hidden mb-5">
+      <div class="bg-tint grid place-items-center text-8xl min-h-[160px]" aria-hidden="true">${c.i}</div>
+      <div class="p-7 flex flex-col">
+        <span class="self-start bg-emerald-100 text-emerald-800 font-extrabold text-xs px-3 py-1 rounded-full">Nuestra elección</span>
+        <h3 class="text-2xl font-extrabold mt-3">${top.n}</h3>
+        <p class="text-mut mb-4">${top.w}</p>
+        <ul class="mb-5 flex-1">${li(top.v)}</ul>
+        <a href="${href(top)}" ${REL} class="${BTN}">Ver precio en Amazon</a>
+        <small class="block text-center text-xs text-mut mt-2">El precio actual lo ves en Amazon.es</small>
+      </div>
+    </article>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      ${c.p.slice(1).map((p, k) => `<article class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
+        <span class="text-sm font-extrabold text-mut">Opción ${k + 2}</span>
+        <h3 class="text-lg font-extrabold mt-2">${p.n}</h3>
+        <p class="text-sm text-mut mb-3">${p.w}</p>
+        <ul class="text-sm mb-4 flex-1">${li(p.v)}</ul>
+        <a href="${href(p)}" ${REL} class="${BTN}">Ver precio en Amazon</a></article>`).join("")}
+    </div>
+    <div class="bg-tint rounded-2xl p-5 mt-6"><b class="block mb-1">Cómo elegir</b>${c.guide}</div>
+  </section>`;
+}).join("");
+
+document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
