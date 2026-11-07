@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recuerdos con Estilo: las mejores opciones para tus fotos</title>
+<meta name="description" content="Marcos digitales, impresoras fotográficas, regalos de boda, álbumes y fotolibros: 25 productos seleccionados para mostrar, imprimir y regalar tus recuerdos.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: { colors: { ink:'#0e1b2c', mut:'#4d5b70', cta:'#ff8a1f', ctah:'#ff9d44', ok:'#0f9d58', tint:'#e8efff' } } } }
+</script>
+<style>body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}</style>
+</head>
+<body class="bg-slate-50 text-ink antialiased">
+
+<header class="sticky top-0 z-20 bg-ink text-white">
+  <nav class="max-w-6xl mx-auto px-5 h-14 flex items-center gap-5 overflow-x-auto whitespace-nowrap" id="nav">
+    <a href="#top" class="font-extrabold text-lg mr-auto">Recuerdos con Estilo</a>
+  </nav>
+</header>
+
+<section id="top" class="bg-ink text-white">
+  <div class="max-w-6xl mx-auto px-5 py-14 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Tus mejores fotos, listas para mirar y regalar</h1>
+      <p class="mt-4 text-slate-300 text-lg max-w-md">Hemos comparado marcos, impresoras, álbumes y regalos para que elijas bien a la primera. En cada categoría, una elección clara y cuatro alternativas.</p>
+    </div>
+    <div class="bg-white text-ink rounded-2xl p-2" id="picks">
+      <h2 class="px-4 pt-3 pb-2 text-sm font-bold text-mut">Nuestras elecciones</h2>
+    </div>
+  </div>
+</section>
+
+<div class="bg-white border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-5 py-4 grid md:grid-cols-3 gap-3 text-sm text-mut">
+    <div><b class="block text-ink">Una elección clara</b>Te decimos cuál comprar y para quién es.</div>
+    <div><b class="block text-ink">Compras en Amazon.es</b>Con sus condiciones de envío y devolución.</div>
+    <div><b class="block text-ink">Sin coste extra</b>El precio para ti es el mismo.</div>
+  </div>
+</div>
+
+<main class="max-w-6xl mx-auto px-5" id="root"></main>
+
+<footer class="bg-ink text-slate-400 mt-16 py-9 text-sm">
+  <div class="max-w-6xl mx-auto px-5 space-y-3">
+    <p><strong class="text-white">Aviso de afiliación:</strong> como afiliado de Amazon, obtengo ingresos por las compras adscritas. El precio que pagas no cambia. Los precios y la disponibilidad los fija Amazon y pueden variar.</p>
+    <p>© <span id="y"></span> Recuerdos con Estilo. Amazon y su logotipo son marcas de Amazon.com, Inc. o sus filiales.</p>
+  </div>
+</footer>
+
+<script>
+// 1) Pon aquí tu ID de Amazon Asociados
+const TAG = "TUTAG-21";
+
+// 2) Productos. El primero de cada categoría es "Nuestra elección".
+// Para usar un enlace directo de Amazon (SiteStripe), añade url: "https://amzn.to/..." al producto.
+const cats = [
+{id:"marcos-digitales", t:"Mejores marcos digitales", s:"Marcos digitales", i:"🖼️",
+ intro:"Pantallas WiFi que reciben fotos desde el móvil. Perfectas para regalar a quien está lejos.",
+ guide:"Busca pantalla IPS, WiFi con app propia y al menos 16 GB. Si es para una persona mayor, elige el que se configura solo.",
+ p:[
+ {n:'AEEZO WiFi 10,1" táctil', w:"La mejor opción para casi todos", v:["Pantalla IPS HD con giro automático","Envío de fotos desde la app"], q:"marco digital AEEZO WiFi 10.1 pulgadas"},
+ {n:"Pix-Star WiFi", w:"Para abuelos y regalos", v:["Recibe fotos por email","Admite vídeo y audio"], q:"marco digital Pix-Star WiFi"},
+ {n:"FUNCARE 32 GB", w:"Para muchas fotos y vídeos", v:["32 GB de memoria propia","No depende de la nube"], q:"marco digital FUNCARE 32GB"},
+ {n:'Nixplay WiFi 10,1"', w:"Para álbumes compartidos", v:["Gestión desde la app","Listas compartidas con la familia"], q:"marco digital Nixplay WiFi"},
+ {n:"Aura Carver", w:"Para el salón", v:["Acabado de diseño","Pantalla de gran calidad"], q:"marco digital Aura Carver"}]},
+{id:"impresoras-fotograficas", t:"Mejores impresoras fotográficas para casa", s:"Impresoras fotográficas", i:"🖨️",
+ intro:"Desde impresoras de bolsillo hasta equipos de tinta de gran formato.",
+ guide:"Para fotos de 10×15 elige sublimación: es más barata por copia. Para formatos grandes, una de tinta con 6 colores.",
+ p:[
+ {n:"Canon SELPHY CP1500", w:"La mejor para fotos 10×15", v:["Impresión resistente al agua","Calidad de laboratorio"], q:"Canon SELPHY CP1500"},
+ {n:"Epson EcoTank ET-8550", w:"Para formato grande", v:["Hasta A3+","Tinta recargable de 6 colores"], q:"Epson EcoTank ET-8550"},
+ {n:"Canon Zoemini 2", w:"Para imprimir desde el móvil", v:["Cabe en el bolsillo","Conexión directa con el móvil"], q:"Canon Zoemini 2"},
+ {n:"HP Envy Inspire 7220e", w:"Para toda la familia", v:["Multifunción versátil","Impresión a doble cara"], q:"HP Envy Inspire 7220e"},
+ {n:"Xiaomi Portable Photo Printer Pro", w:"Para no gastar en tinta", v:["Impresión térmica sin tinta","Bluetooth y accesorios incluidos"], q:"Xiaomi Portable Photo Printer Pro"}]},
+{id:"regalos-boda", t:"Regalos personalizados para bodas", s:"Regalos de boda", i:"💍",
+ intro:"Detalles con nombres y fecha para novios e invitados.",
+ guide:"Comprueba el plazo de grabado antes de la boda y escribe nombres y fecha tal como van a aparecer.",
+ p:[
+ {n:"Copas de brindis grabadas", w:"El regalo que nunca falla", v:["Nombres y fecha grabados","Se guardan como recuerdo"], q:"copas boda personalizadas grabadas novios"},
+ {n:"Libro de firmas personalizado", w:"Para el día de la boda", v:["Los invitados dejan su mensaje","Portada personalizable"], q:"libro de firmas boda personalizado"},
+ {n:"Marco de fotos grabado", w:"Para la mejor foto", v:["Madera con dedicatoria","Fácil de regalar"], q:"marco fotos boda personalizado grabado"},
+ {n:"Caja de recuerdos de madera", w:"Para guardar cartas y entradas", v:["Tapa grabada","Dura toda la vida"], q:"caja recuerdos madera personalizada boda"},
+ {n:"Lámpara LED con foto", w:"Para sorprender", v:["Se ilumina con vuestra foto","Original y decorativa"], q:"lámpara led foto personalizada regalo boda"}]},
+{id:"albumes-premium", t:"Álbumes de fotos premium", s:"Álbumes premium", i:"📖",
+ intro:"Materiales nobles y páginas que cuidan tus fotos durante décadas.",
+ guide:"Elige páginas libres de ácido y confirma el tamaño de tus copias (10×15 o 13×18) antes de comprar.",
+ p:[
+ {n:"Álbum de lino 10×15", w:"El más equilibrado", v:["Hasta 500 fotos en bolsillos","Portada de tela elegante"], q:"álbum fotos lino 10x15 500 fotos"},
+ {n:"Álbum de cuero", w:"Para regalar con estilo", v:["Tapa de piel","Páginas libres de ácido"], q:"álbum fotos cuero premium"},
+ {n:"Álbum autoadhesivo clásico", w:"Para pegar sin complicarte", v:["Páginas adhesivas","Lámina protectora transparente"], q:"álbum fotos autoadhesivo grande"},
+ {n:"Álbum para Polaroid", w:"Para fotos instantáneas", v:["Bolsillos del tamaño justo","Ligero y compacto"], q:"álbum fotos polaroid instax"},
+ {n:"Álbum scrapbook kraft", w:"Para decorar a tu gusto", v:["Hojas para pegar y escribir","Ideal para manualidades"], q:"álbum scrapbook kraft DIY"}]},
+{id:"fotolibros", t:"Fotolibros recomendados", s:"Fotolibros", i:"📚",
+ intro:"Libros de recuerdos, kits y guías para contar una historia con tus fotos.",
+ guide:"Si quieres un fotolibro impreso a medida, se pide en servicios de impresión. Aquí tienes libros y kits para montarlo tú.",
+ p:[
+ {n:"Libro de recuerdos de pareja", w:"El favorito para regalar", v:["Guiado: solo rellenar","Espacio para fotos y vivencias"], q:"libro de recuerdos pareja para rellenar fotos"},
+ {n:"Álbum de bebé", w:"Para el primer año", v:["Mes a mes","Recuerdos de los primeros pasos"], q:"álbum bebé primer año recuerdos libro"},
+ {n:"Diario de viaje con fotos", w:"Para viajeros", v:["Hojas para pegar entradas","Cabe en la mochila"], q:"diario de viaje scrapbook fotos"},
+ {n:"Kit fotolibro DIY", w:"Para hacerlo tú mismo", v:["Todo incluido","Resultado personal"], q:"kit fotolibro scrapbook DIY"},
+ {n:"Libro de fotografía creativa", w:"Para mejorar tus fotos", v:["Ideas de composición","Para todos los niveles"], q:"libro fotografía creativa guía"}]}
+];
+
+const href = p => p.url || `https://www.amazon.es/s?k=${encodeURIComponent(p.q)}&tag=${TAG}`;
+const REL = 'target="_blank" rel="sponsored nofollow noopener"';
+const BTN = 'block text-center bg-cta hover:bg-ctah text-[#1a1100] font-extrabold py-3 px-4 rounded-xl shadow-[0_2px_0_#d46f0b] transition';
+const li = v => v.map(x => `<li class="relative pl-6 my-1"><span class="absolute left-0 text-ok font-extrabold">✓</span>${x}</li>`).join("");
+
+// Menú
+document.getElementById("nav").insertAdjacentHTML("beforeend",
+  cats.map(c => `<a href="#${c.id}" class="text-sm font-semibold text-slate-300 hover:text-white">${c.s}</a>`).join(""));
+
+// Elecciones en la portada
+document.getElementById("picks").insertAdjacentHTML("beforeend",
+  cats.map(c => `<a href="${href(c.p[0])}" ${REL} class="grid grid-cols-[auto_1fr_auto] gap-3 items-center px-4 py-3 rounded-xl hover:bg-tint">
+    <span class="text-2xl" aria-hidden="true">${c.i}</span>
+    <span><b class="block text-[15px]">${c.p[0].n}</b><small class="text-mut">${c.s}</small></span>
+    <span class="text-xs font-bold text-blue-600">Ver en Amazon</span></a>`).join(""));
+
+// Categorías
+document.getElementById("root").innerHTML = cats.map(c => {
+  const top = c.p[0];
+  return `<section id="${c.id}" class="pt-14 scroll-mt-16">
+    <h2 class="text-3xl font-extrabold">${c.t}</h2>
+    <p class="text-mut mt-2 mb-6 max-w-xl">${c.intro}</p>
+    <article class="grid md:grid-cols-2 bg-white border-2 border-ok rounded-2xl overflow-hidden mb-5">
+      <div class="bg-tint grid place-items-center text-8xl min-h-[160px]" aria-hidden="true">${c.i}</div>
+      <div class="p-7 flex flex-col">
+        <span class="self-start bg-emerald-100 text-emerald-800 font-extrabold text-xs px-3 py-1 rounded-full">Nuestra elección</span>
+        <h3 class="text-2xl font-extrabold mt-3">${top.n}</h3>
+        <p class="text-mut mb-4">${top.w}</p>
+        <ul class="mb-5 flex-1">${li(top.v)}</ul>
+        <a href="${href(top)}" ${REL} class="${BTN}">Ver precio en Amazon</a>
+        <small class="block text-center text-xs text-mut mt-2">El precio actual lo ves en Amazon.es</small>
+      </div>
+    </article>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      ${c.p.slice(1).map((p, k) => `<article class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col">
+        <span class="text-sm font-extrabold text-mut">Opción ${k + 2}</span>
+        <h3 class="text-lg font-extrabold mt-2">${p.n}</h3>
+        <p class="text-sm text-mut mb-3">${p.w}</p>
+        <ul class="text-sm mb-4 flex-1">${li(p.v)}</ul>
+        <a href="${href(p)}" ${REL} class="${BTN}">Ver precio en Amazon</a></article>`).join("")}
+    </div>
+    <div class="bg-tint rounded-2xl p-5 mt-6"><b class="block mb-1">Cómo elegir</b>${c.guide}</div>
+  </section>`;
+}).join("");
+
+document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
